@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+from prettytable import PrettyTable
+
+#open ip file and read specific lines
+file = open('/<path>/blackeye-im/sites/<company>/saved.ip.txt')
+content = file.readlines()
+#print(content[1])
+
+#Get IP Address
+ip_raw = content[0]
+ip_strip1 = ip_raw.strip("\n")
+ip_split = ip_strip1.split(":")
+#print(ip_split)
+ip_true = ip_split[1]
+ip_strip2 = ip_true.strip(" ")
+#print(ip_strip2)
+
+#Get Browser Version
+
+brows_raw = content[1]
+brows_split = brows_raw.split(" ")
+#print(brows_split)
+brows_true = brows_split[2]
+#print(brows_true)
+
+OS_true1 = brows_split[4]
+OS_true2 = brows_split[5]
+OS = OS_true1 + " " + OS_true2.strip(";")
+#print(OS)
+
+table = PrettyTable()
+table.field_names = ["IP Address", "Browser Version", "Operating System"]
+table.add_row([ip_true, brows_true, OS])
+#add pass and strentgth later
+print(table)
